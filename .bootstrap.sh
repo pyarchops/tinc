@@ -11,11 +11,13 @@ test -e .pyenv/bin && export PATH=./pyenv/bin:$PATH
 
 if ! `which pyenv >/dev/null 2>&1`; then
     echo "${bold}installing pyenv....${normal}"
+    test -e .pyenv || git clone https://github.com/pyenv/pyenv.git .pyenv
     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 fi
 
 echo "${bold}activating  pyenv....${normal}"
-test -e .pyenv/bin && export PATH=./pyenv/bin:$PATH
+test -e .pyenv && PATH=./pyenv/bin:$PATH ; export PATH
+test -e .pyenv && PYENV_ROOT="$HOME/.pyenv"; export PYENV_ROOT
 eval "$(pyenv init -)"
 
 echo "${bold}looking for a new pyenv version....${normal}"
