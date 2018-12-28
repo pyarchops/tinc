@@ -3,12 +3,18 @@ stages:
     - setup
     - test
 
+before_script:
+    - PATH=".pyenv/bin:.venv/bin:$PATH" && export PATH
+
 setup:
     stage: setup
     script: bash .bootstrap.sh
     artifacts:
+      untracked: true
+      expire_in: '1h00m'
       paths:
         - .venv
+        - .pyenv
     tags:
         - archlinux
 docs:
@@ -33,6 +39,8 @@ py37:
     stage: test
     dependencies:
       - setup
+    variables:
+      PATH: ".pyenv/bin:.venv/bin:$PATH"
     script:
       - source .venv/bin/activate && make pytest
     tags:
