@@ -7,16 +7,16 @@ normal=$(tput sgr0)
 
 echo "${bold}running bootstrap ....${normal}"
 
+test -e .pyenv/bin && export PATH=./pyenv/bin:$PATH
 
 if ! `which pyenv >/dev/null 2>&1`; then
     echo "${bold}installing pyenv....${normal}"
     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-    echo 'export PATH="~/.pyenv/bin:$PATH"' >> ~/.profile
-    echo 'eval "$(pyenv init -)"' >> ~/.profile
 fi
 
 echo "${bold}activating  pyenv....${normal}"
-test -e ~/.profile && . ~/.profile
+test -e .pyenv/bin && export PATH=./pyenv/bin:$PATH
+eval "$(pyenv init -)"
 
 echo "${bold}looking for a new pyenv version....${normal}"
 pyenv update
