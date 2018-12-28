@@ -3,9 +3,6 @@ stages:
     - setup
     - test
 
-before_script:
-    - PATH=".pyenv/bin:.venv/bin:$PATH" && export PATH
-
 setup:
     stage: setup
     script: bash .bootstrap.sh
