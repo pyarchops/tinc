@@ -26,8 +26,8 @@ export PRINT_HELP_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
-export PATH := .pyenv/bin:.venv/bin:$(PATH)
-
+PATH  := $(PWD)/.pyenv/bin:$(PWD)/.venv/bin:$(PATH)
+SHELL := env PATH=$(PATH) /bin/bash
 
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
