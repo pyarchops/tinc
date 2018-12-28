@@ -11,7 +11,6 @@ setup:
       expire_in: '1h00m'
       paths:
         - .venv
-        - .pyenv
     tags:
         - archlinux
 docs:
@@ -32,7 +31,7 @@ syntax:
     tags:
         - archlinux
 
-py37:
+app:
     stage: test
     dependencies:
       - setup
