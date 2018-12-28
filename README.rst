@@ -91,32 +91,32 @@ Usage
     tinc_up_file = textwrap.dedent(f'''
         #!/bin/sh
         # see: https://www.tinc-vpn.org/pipermail/tinc/2017-January/004729.html
-        macfile=/etc/tinc/{tinc_network_name()}/address
+        macfile=/etc/tinc/{tinc_network_name}/address
         if [ -f $macfile ]; then
-            ip link set tinc.{tinc_network_name()} address `cat $macfile`
+            ip link set tinc.{tinc_network_name} address `cat $macfile`
         else
-            cat /sys/class/net/tinc.{tinc_network_name()}/address >$macfile
+            cat /sys/class/net/tinc.{tinc_network_name}/address >$macfile
         fi
 
         # https://bugs.launchpad.net/ubuntu/+source/isc-dhcp/+bug/1006937
-        dhclient -4 -nw -v tinc.{tinc_network_name()} -cf /etc/tinc/{tinc_network_name()}/dhclient.conf -r
-        dhclient -4 -nw -v tinc.{tinc_network_name()} -cf /etc/tinc/{tinc_network_name()}/dhclient.conf
+        dhclient -4 -nw -v tinc.{tinc_network_name} -cf /etc/tinc/{tinc_network_name}/dhclient.conf -r
+        dhclient -4 -nw -v tinc.{tinc_network_name} -cf /etc/tinc/{tinc_network_name}/dhclient.conf
     ''')
 
     tinc_down_file = textwrap.dedent(f'''
         #!/bin/sh
-        dhclient -4 -nw -v tinc.{tinc_network_name()} -cf /etc/tinc/{tinc_network_name()}/dhclient.conf -r
+        dhclient -4 -nw -v tinc.{tinc_network_name} -cf /etc/tinc/{tinc_network_name}/dhclient.conf -r
         ''')
 
     fix_route_file = textwrap.dedent(f'''
         #!/usr/bin/env bash
 
         sleep 15
-        netstat -rnv | grep {tinc_network_name()} | grep 0.0.0.0 >/dev/null 2>&1
+        netstat -rnv | grep {tinc_network_name} | grep 0.0.0.0 >/dev/null 2>&1
 
         if [ $? = 0 ]; then
-            route del -net {tinc_network_name()} netmask 24 gateway 0.0.0.0
-            route add -net {tinc_network_name()} netmask 24 gateway `ifconfig tinc.{tinc_network_name()}| grep inet | awk '{{ print $2 }}' `
+            route del -net {tinc_network_name} netmask 24 gateway 0.0.0.0
+            route add -net {tinc_network_name} netmask 24 gateway `ifconfig tinc.{tinc_network_name}| grep inet | awk '{{ print $2 }}' `
         fi
     ''')
 
@@ -194,7 +194,7 @@ Usage
         DeviceType = tap
 
         Device = /dev/net/tun
-        Interface = tinc.{tinc_network_name()}
+        Interface = tinc.{tinc_network_name}
         AddressFamily = ipv4
         LocalDiscovery = yes
         Mode=switch
