@@ -8,6 +8,7 @@ normal=$(tput sgr0)
 echo "${bold}running bootstrap ....${normal}"
 
 test -e .pyenv/bin && export PATH=./pyenv/bin:$PATH
+env
 
 if ! `which pyenv >/dev/null 2>&1`; then
     echo "${bold}installing pyenv....${normal}"
@@ -17,8 +18,9 @@ fi
 echo "${bold}activating  pyenv....${normal}"
 test -e .pyenv && PATH=./pyenv/bin:$PATH ; export PATH
 test -e .pyenv && PYENV_ROOT="$HOME/.pyenv"; export PYENV_ROOT
+env
 eval "$(pyenv init -)"
-
+env
 echo "${bold}looking for a new pyenv version....${normal}"
 pyenv update
 
