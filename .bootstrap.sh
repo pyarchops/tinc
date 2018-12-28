@@ -12,7 +12,6 @@ test -e .pyenv/bin && export PATH=./pyenv/bin:$PATH
 if ! `which pyenv >/dev/null 2>&1`; then
     echo "${bold}installing pyenv....${normal}"
     test -e .pyenv || git clone https://github.com/pyenv/pyenv.git .pyenv
-    curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 fi
 
 echo "${bold}activating  pyenv....${normal}"

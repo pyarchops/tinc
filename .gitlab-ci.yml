@@ -36,8 +36,6 @@ py37:
     stage: test
     dependencies:
       - setup
-    variables:
-      PATH: ".pyenv/bin:.venv/bin:$PATH"
     script:
       - source .venv/bin/activate && make pytest
     tags:
