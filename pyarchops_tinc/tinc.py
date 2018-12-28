@@ -72,7 +72,7 @@ def deploy_hosts_files(
     results['connect_to_hosts'] = dict()
     for node, node_hostfile in config['connect_to_hosts'].items():
         results['connect_to_hosts'][node] = api.copy(
-            dest=f"/etc/tinc/{config['tinc_network_name']}/{node}",
+            dest=f"/etc/tinc/{config['tinc_network_name']}/hosts/{node}",
             content=node_hostfile,
             owner='root',
             group='root',
