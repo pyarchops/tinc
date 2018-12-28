@@ -19,7 +19,7 @@ echo "${bold}activating  pyenv....${normal}"
 test -e .pyenv && PATH=./pyenv/bin:$PATH ; export PATH
 test -e .pyenv && PYENV_ROOT="$HOME/.pyenv"; export PYENV_ROOT
 env
-eval "$(pyenv init -)"
+eval "$(pyenv init)"
 env
 echo "${bold}looking for a new pyenv version....${normal}"
 pyenv update
