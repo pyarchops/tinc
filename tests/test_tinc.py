@@ -187,7 +187,7 @@ def tinc_conf_file():
     """ returns tinc.conf file """
 
     return textwrap.dedent(f'''
-        Name = sardinha
+        Name = laptop
         DeviceType = tap
 
         Device = /dev/net/tun
@@ -222,8 +222,6 @@ def test_tinc_apply():
             sudo=True,
             ssh_extra_args='-o StrictHostKeyChecking=no',
         )
-
-
 
         config = {
             'tinc_network_name': tinc_network_name(),
