@@ -9,8 +9,8 @@ pyArchOps/tinc
 .. image:: https://img.shields.io/gitlab/pipeline/pyarchops/tinc/next-release.svg
         :target: https://gitlab.com/pyarchops/tinc/pipelines
 
-.. image:: https://readthedocs.org/projects/tinc/badge/?version=latest
-        :target: https://tinc.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/pyarch-tinc/badge/?version=latest
+        :target: https://pyarch-tinc.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 .. image:: https://pyup.io/repos/github/pyarchops/tinc/shield.svg
