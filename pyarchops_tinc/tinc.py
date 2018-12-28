@@ -48,7 +48,7 @@ def create_tinc_network_folder(
     result = api.file(
         name=f"/etc/tinc/{config['tinc_network_name']}",
         state='directory',
-        mode="0700",
+        mode="0755",
         owner='root',
         group='root'
     )
@@ -65,7 +65,7 @@ def deploy_hosts_files(
     results['create_hosts_dir'] = api.file(
         name=f"/etc/tinc/{config['tinc_network_name']}/hosts",
         state='directory',
-        mode="0700",
+        mode="0755",
         owner='root',
         group='root'
     )
@@ -76,7 +76,7 @@ def deploy_hosts_files(
             content=node_hostfile,
             owner='root',
             group='root',
-            mode="0640",
+            mode="0644",
         )
     return dict({'deploy_host_files': results})
 
