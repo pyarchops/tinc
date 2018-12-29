@@ -2,18 +2,25 @@ steps:
     - label: setup
       command:
         - bash .bootstrap.sh
-      artifact_paths: '.venv/*'
+        - tar czf virtualenv.tar.gz .venv
+      artifact_paths: 'virtualenv.tar.gz'
 
     - wait
 
     - label: docs
       command:
-        - buildkite-agent artifact download build.tar.gz .  && tar xf build.tar.gz && source .venv/bin/activate && LC_ALL=C BROWSER=echo make docs
+        - buildkite-agent artifact download virtualenv.tar.gz .
+        - tar xf virtualenv.tar.gz
+        - source .venv/bin/activate && LC_ALL=C BROWSER=echo make docs
 
     - label: syntax
       command:
-        - buildkite-agent artifact download build.tar.gz . && tar xf build.tar.gz && source .venv/bin/activate && make mypy lint
+        - buildkite-agent artifact download virtualenv.tar.gz .
+        - tar xf virtualenv.tar.gz
+        - source .venv/bin/activate && make mypy lint
 
     - label: app
       command:
-        - buildkite-agent artifact download build.tar.gz .  && tar xf build.tar.gz && source .venv/bin/activate && make pytest
+        - buildkite-agent artifact download virtualenv.tar.gz .
+        - tar xf virtualenv.tar.gz
+        -  source .venv/bin/activate && make pytest
