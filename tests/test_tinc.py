@@ -207,7 +207,7 @@ def test_tinc_apply():
     """Test the tinc apply function"""
 
     with ephemeral_docker_container(
-            image='azulinho/pyarchops-base'
+            image='registry.gitlab.com/pyarchops/pyarchops-base'
     ) as container:
         connection_string = "{}:{}".format(
             container['ip'], container['port']
